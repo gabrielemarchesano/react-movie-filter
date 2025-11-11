@@ -14,7 +14,19 @@ function App() {
   return (
     <>
       <div className="container">
-        <div className="card">
+        <div class="mb-3">
+          <select
+            className="form-select form-select-lg"
+          >
+            <option selected>Seleziona un genere</option>
+            <option value="">Fantascienza</option>
+            <option value="">Thriller</option>
+            <option value="">Romantico</option>
+            <option value="">Azione</option>
+          </select>
+        </div>
+        
+        <div className="card my-2">
           <ul className="list-group">
             {
               movies.map((movie) => (
