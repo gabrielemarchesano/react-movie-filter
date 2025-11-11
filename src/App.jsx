@@ -19,8 +19,12 @@ function App() {
   }
 
   useEffect(() => {
-    const filtered = movies.filter((movie) => movie.genre === selectedGenre);
-    setFilteredMovies(filtered);
+    if(selectedGenre === ""){
+      setFilteredMovies(movies);
+    } else{
+        const filtered = movies.filter((movie) => movie.genre === selectedGenre);
+        setFilteredMovies(filtered);
+    }
   }, [selectedGenre]);
 
   /* console.log(selectedGenre) */
