@@ -11,33 +11,39 @@ function App() {
     { title: 'Pulp Fiction', genre: 'Thriller' },
   ];
 
+  const [selectedGenre, setSelectedGenre] = useState("");
+
+  function handleGenreChange(event){
+    setSelectedGenre(event.target.value);
+  }
+  console.log(selectedGenre)
   return (
     <>
       <div className="container">
-        <div class="mb-3">
-          <select
-            className="form-select form-select-lg"
-          >
-            <option selected>Seleziona un genere</option>
-            <option value="">Fantascienza</option>
-            <option value="">Thriller</option>
-            <option value="">Romantico</option>
-            <option value="">Azione</option>
-          </select>
-        </div>
-        
-        <div className="card my-2">
-          <ul className="list-group">
-            {
-              movies.map((movie) => (
-                <li className="list-group-item">
-                  <h4>{movie.title}</h4> 
-                  <small>{movie.genre}</small>
-                </li>
-              ))
-            }
-          </ul>
-          
+        <div className="py-4">
+          <div className="mb-3">
+            <select className="form-select form-select-lg" value={selectedGenre} onChange={handleGenreChange}>
+              <option value="">Seleziona un genere</option>
+              <option value="Fantascienza">Fantascienza</option>
+              <option value="Thriller">Thriller</option>
+              <option value="Romantico">Romantico</option>
+              <option value="Azione">Azione</option>
+            </select>
+          </div>
+          <p>{selectedGenre}</p>
+          <div className="card">
+            <ul className="list-group">
+              {
+                movies.map((movie, index) => (
+                  <li className="list-group-item" key={index}>
+                    <h4>{movie.title}</h4>
+                    <small>{movie.genre}</small>
+                  </li>
+                ))
+              }
+            </ul>
+
+          </div>
         </div>
       </div>
     </>
