@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
 
@@ -12,11 +12,19 @@ function App() {
   ];
 
   const [selectedGenre, setSelectedGenre] = useState("");
+  const [filteredMovies, setFilteredMovies] = useState(movies);
 
   function handleGenreChange(event){
     setSelectedGenre(event.target.value);
   }
-  console.log(selectedGenre)
+
+  useEffect(() => {
+    const filtered = movies.filter((movie) => movie.genre === selectedGenre);
+    setFilteredMovies(filtered);
+  }, [selectedGenre]);
+
+  /* console.log(selectedGenre) */
+
   return (
     <>
       <div className="container">
@@ -30,11 +38,11 @@ function App() {
               <option value="Azione">Azione</option>
             </select>
           </div>
-          <p>{selectedGenre}</p>
+          {/* <p>{selectedGenre}</p> */}
           <div className="card">
             <ul className="list-group">
               {
-                movies.map((movie, index) => (
+                filteredMovies.map((movie, index) => (
                   <li className="list-group-item" key={index}>
                     <h4>{movie.title}</h4>
                     <small>{movie.genre}</small>
